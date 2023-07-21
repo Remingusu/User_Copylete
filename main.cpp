@@ -1,26 +1,13 @@
+#include "src/headers/users_lister.h"
 #include <iostream>
-#include <filesystem>
-#include <vector>
-#include <string>
+
 
 int main()
 {
-    std::vector<std::string> folder_list;
-    for (const auto& foldername :  std::filesystem::directory_iterator("C:\\Users"))
+    std::vector<std::string> foldersList = getList();
+    for (const auto& folderName : foldersList)
     {
-        if (std::filesystem::is_directory(foldername))
-        {
-            folder_list.push_back(foldername.path().generic_string());
-        }
-    }
-    std::remove(folder_list.begin(), folder_list.end(), "C:/Users/Public");
-    std::remove(folder_list.begin(), folder_list.end(), "C:/Users/Default");
-    std::remove(folder_list.begin(), folder_list.end(), "C:/Users/Default User");
-    std::remove(folder_list.begin(), folder_list.end(), "C:/Users/All Users");
-
-    for (const auto& foldername : folder_list)
-    {
-        std::cout << foldername << std::endl;
+        std::cout << folderName << std::endl;
     }
 
     return 0;
